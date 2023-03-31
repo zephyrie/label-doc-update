@@ -63,39 +63,39 @@ MONAI Label aims to fill the gap between developers creating new annotation appl
 - PACS connectivity via [DICOMWeb](https://www.dicomstandard.org/using/dicomweb)
 - Automated Active Learning workflow for endoscopy using [CVAT](https://github.com/Project-MONAI/MONAILabel/tree/main/plugins/cvat)
 
-#### Support Matrix
-Here you can find a table of the various supportedfields, modalities, viewers, and general data types.  However, these are only ones that we've explicitly test and that doesn't mean that your dataset or file type won't work with MONAI Label.  Try MONAI for your given task and if you're having issues, reach out through GitHub Issues.
+#### Supported Matrix
+Here you can find a table of the various supported fields, modalities, viewers, and general data types.  However, these are only ones that we've explicitly test and that doesn't mean that your dataset or file type won't work with MONAI Label.  Try MONAI for your given task and if you're having issues, reach out through GitHub Issues.
 <table>
 <tr>
   <th>Field</th>
-  <th>Apps</th>
+  <th>Models</th>
   <th>Viewers</th>
   <th>Data Types</th>
-  <th>Modalities/Target</th>
+  <th>Image Modalities/Target</th>
 </tr>
   <td>Radiology</td>
   <td>
     <ul>
-      <li>DeepEdit</li>
-      <li>DeepGrow</li>
       <li>Segmentation</li>
+      <li>DeepGrow</li>
+      <li>DeepEdit</li>
     </ul>
   </td>
   <td>
     <ul>
-      <li>3D Slicer</li>
+      <li>3DSlicer</li>
       <li>OHIF</li>
     </ul>
   </td>
   <td>
     <ul>
-      <li>nifti</li>
+      <li>NIfTI</li>
+      <li>NRRD</li>
       <li>DICOM</li>
     </ul>
   </td>
   <td>
     <ul>
-      <li>X-Ray</li>
       <li>CT</li>
       <li>MRI</li>
     </ul>
@@ -275,8 +275,8 @@ CVAT is an interactive video and image annotation tool for computer vision.
 ## Step 4. Data Preparation
 For data preparation, you have two options, you can use a local data store or any image archive tool that supports DICOMWeb.
 
-#### Local Datastore
-For a Datastore in a file archive, there is a set folder structure that MONAI Label uses. Place your image data in a folder and if you have any segmentation files, create and place them in a subfolder called `labels/final`. You can see an example below:
+#### Local Datastore for the Radiology App on single modality images
+For a Datastore in a local file archive, there is a set folder structure that MONAI Label uses. Place your image data in a folder and if you have any segmentation files, create and place them in a subfolder called `labels/final`. You can see an example below:
 ```
 dataset
 │-- spleen_10.nii.gz
@@ -288,12 +288,15 @@ dataset
         │-- spleen_11.nii.gz
         │   ...
 ```
+
+If you don't have labels, just place the images/volumes in the dataset folder.
+
 #### DICOMWeb Support
-If the viewer you're using supports DICOMweb, you can use that instead of a local datastore to server images to MONAI Label. When starting the MONAI Label server, we need to specify the URL of the DICOMweb service in the studies argument (and, optionally, the username and password for DICOM servers that require them). You can see an example of starting the MONAI Label server with a DICOMweb URL below:
+If the viewer you're using supports DICOMweb standard, you can use that instead of a local datastore to serve images to MONAI Label. When starting the MONAI Label server, we need to specify the URL of the DICOMweb service in the studies argument (and, optionally, the username and password for DICOM servers that require them). You can see an example of starting the MONAI Label server with a DICOMweb URL below:
 
 
 ```
-monailabel start_server --app apps/radiology --studies http://127.0.0.1:8042/dicom-web --conf models deepedit
+monailabel start_server --app apps/radiology --studies http://127.0.0.1:8042/dicom-web --conf models segmentation
 ```
 
 
@@ -303,8 +306,10 @@ You're now ready to start using MONAI Label.  Once you've configured your viewer
 ```
 monailabel apps --download --name radiology --output apps
 monailabel datasets --download --name Task09_Spleen --output datasets
-monailabel start_server --app apps/radiology --studies datasets/Task09_Spleen/imagesTr --conf models deepedit
+monailabel start_server --app apps/radiology --studies datasets/Task09_Spleen/imagesTr --conf models segmentation
 ```
+
+**Note:** If you want to work on different labels than the ones proposed by default, change the configs file following the instructions here: https://youtu.be/KtPE8m0LvcQ?t=622
 
 ## Cite
 
