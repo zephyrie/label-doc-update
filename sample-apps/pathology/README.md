@@ -14,7 +14,7 @@ limitations under the License.
 # Pathology Sample Application
 A reference app to run inference + train tasks to segment Nuclei. This app works in both Digital Slide Archive (DSA) and QuPath Viewers, but we recommend using DSA as an endpoint for studies; however, you can also use the local datastore as a studies folder. 
 
-## Table of Contents
+### Table of Contents
 - [Supported Viewers](#supported-viewers)
 - [Installation Requirements](#installation-requirements)
 - [Pretrained Models](#pretrained-models)

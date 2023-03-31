@@ -15,7 +15,7 @@ limitations under the License.
 
 This app has example models to do both interactive and automated segmentation over radiology (3D) images. Including auto segmentation with the latest deep learning models (e.g., UNet, UNETR) for multiple abdominal organs. Interactive tools include DeepEdit and Deepgrow for actively improving trained models and deployment.
 
-## Table of Contents
+### Table of Contents
 - [Supported Viewers](#supported-viewers)
 - [Pretrained Models](#list-of-pretrained-models)
 - [How To Use the App](#how-to-use-the-app)

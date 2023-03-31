@@ -11,30 +11,25 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# Integration with MONAI Bundle
-The App helps to pull any MONAI Bundle from [MONAI ZOO](https://github.com/Project-MONAI/model-zoo/tree/dev/models).
-However the following constraints has to be met for any monai bundle to directly import and use in MONAI Label.
- - Has to meet [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html).
- - For Inference, the bundle has defined **inference.json** or **inference.yaml** and defines [these keys](../../monailabel/tasks/infer/bundle.py)
- - For Training, the bundle has defined **train.json** or **train.yaml** and defines [these keys](../../monailabel/tasks/train/bundle.py)
- - For Multi-GPU Training, the bundle has defined **multi_gpu_train.json** or **multi_gpu_train.yaml**
+# MONAI Bundle Application
+The MONAIBundle App allows you to easily pull any MONAI Bundle from the [MONAI Model Zoo](https://github.com/Project-MONAI/model-zoo/tree/dev/models) and import it into MONAI Label. However, it's important to note that any MONAI Bundle used with MONAI Label must meet the following constraints:
 
-> By default models are picked from https://github.com/Project-MONAI/model-zoo/blob/dev/models/model_info.json
+- It must comply with the [MONAI Bundle Specification](https://docs.monai.io/en/latest/mb_specification.html).
+- For inference, the bundle must define either an `inference.json` or `inference.yaml` file, and it must include the keys described in the bundle.py file located in the `monailabel/tasks/infer/` directory.
+- For training, the bundle must define either a `train.json` or `train.yaml file`, and it must include the keys described in the bundle.py file located in the `monailabel/tasks/train/` directory.
+- For multi-GPU training, the bundle must define either a `multi_gpu_train.json` or `multi_gpu_train.yaml` file.
 
-### Structure of the App
+These constraints ensure that any MONAI Bundle used with MONAI Label is compatible with the platform and can be seamlessly integrated into your workflow.
 
-- **[lib/infers](./lib/infers)** is to define and activate inference task over monai-bundle.
-- **[lib/trainers](./lib/trainers)** is to define and activate training task over monai-bundle for single/multi gpu.
-- **[lib/activelearning](./lib/activelearning)** is the module to define the image selection techniques.
-- **[main.py](./main.py)** is the script to extend [MONAILabelApp](../../monailabel/interfaces/app.py) class
-
-> Modify Constants defined in [Infer](../../monailabel/tasks/infer/bundle.py) and [Train](../../monailabel/tasks/train/bundle.py) to customize and adopt if the basic standard/schema is not met for your bundle.
-
-### Overview
+### Table of Contents
+- [Supported Models](#supported-models)
+- [How To Use the App](#how-to-use-the-app)
+- [Epistemic Scoring using MONAI Bundles](#epistemic-Scoring-for-monaibundle-app)
 
 ### Supported Models
 
-The Bundle App supports most labeling models in the Model Zoo, please see the table for labeling tasks.
+
+The MONAIBundle App currently supports most labeling models in the Model-Zoo. You can find a table of supported labeling tasks below. Please note that the list of supported tasks is updated based on the latest release from the [Model-Zoo](https://github.com/Project-MONAI/model-zoo/tree/dev/models).
 
 | Bundle | Model | Objects | Modality | Note |
 |:----:|:-----:|:-------:|:--------:|:----:|
@@ -46,15 +41,8 @@ The Bundle App supports most labeling models in the Model Zoo, please see the ta
 | [wholeBrainSeg_UNEST_segmentation](https://github.com/Project-MONAI/model-zoo/tree/dev/models/wholeBrainSeg_Large_UNEST_segmentation) | UNesT | Whole Brain | MRI T1 |  A pre-trained for inference (3D) 133 whole brain structures segmentation |
 | [spleen_deepedit_annotation](https://github.com/Project-MONAI/model-zoo/tree/dev/models/spleen_deepedit_annotation) | DeepEdit | Spleen| CT | An interactive method for 3D spleen Segmentation |
 
-Supported tasks update based on [Model-Zoo](https://github.com/Project-MONAI/model-zoo/tree/dev/models) release.
 
-Note: MONAI Label support labeling bundle models in the MODEL ZOO, non-labeling tasks are not available for MONAI Label.
-
-Note: the monaibundle app uses monai bundle api to get information of latest Model-Zoo. In order to increase the rate limits of calling GIthub APIs, you can input your personal access token.
-    Please check the following link for more details about rate limiting:
-    https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting
-
-Set **--conf auth_token <github personal access token>** to increate rate limits.
+**Note:** The MONAIBundle app uses the MONAI Bundle API to retrieve information about the latest models from the Model-Zoo. If you're encountering rate limiting issues while using the app, you can input your personal access token using the --conf auth_token command. For more information on rate limiting and how to generate an access token, please refer to the following link: https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting
 
 ### How To Use?
 
@@ -79,10 +67,9 @@ monailabel start_server --app workspace/monaibundle --studies workspace/images -
 ```
 
 ### Epistemic Scoring for monaibundle app
+The MONAIBundle App supports epistemic scoring using bundle models. To use epistemic scoring, you can specify a valid scoring bundle model as the `epistemic_model` configuration parameter when running the app, E.g., `--conf epistemic_model <bundlename>`. If a valid scoring bundle model is provided, scoring inference will be triggered. The loaded scoring bundle model can be either a model from the Model Zoo or a local bundle, but it must support the `dropout` argument.
 
-The monaibundle app supports epistemic scoring using bundles models. The monaibundle consumes **epistemic_model** as config parameter.
-If a valid scoring bundle model is provided with **--conf epistemic_model <bundlename>**, scoring inference will be triggered.
-The loaded scoring bundle model can be either model-zoo models or local bundles, the network must support **dropout** argument.
+With epistemic scoring, MONAIBundle can provide measures of uncertainty or confidence in the model's predictions, which can be useful in a variety of applications.
 
 ```bash
 # Use the UNet in spleen_ct_segmentation_v0.2.0 bundle as epistemic scoring model.
@@ -98,11 +85,9 @@ monailabel start_server \
 
 ```
 
-Users can then select active learning strategies for selecting data to label.
-
 #### Additional Configs
 
-Pass them as **--conf _name_ _value_** while starting MONAILabelServer
+To set configuration parameters for MONAI Label Server, use the `--conf <name> <value>` flag followed by the parameter name and value while starting the MONAI Label Server.
 
 | Name                      | Values          | Description                                                                                 |
 |---------------------------|-----------------|---------------------------------------------------------------------------------------------|

@@ -11,7 +11,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# CVAT MONAILabel extension
+# MONAI Label Extension for CVAT
+CVAT is an interactive video and image annotation tool for computer vision. It provides a user-friendly interface for annotating images and videos, making it ideal for computer-assisted intervention applications. MONAI Label can deploy computer vision-related tasks with the CVAT viewer, such as endoscopy segmentation and tracking.
+
+### Table of Contents 
+- []()
 
 ## Requirement
 
