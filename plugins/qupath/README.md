@@ -14,14 +14,14 @@ limitations under the License.
 # MONAI Label Plugin for QuPath
 QuPath is an open, flexible, extensible software platform for bioimage analysis. It is designed to support a wide range of tasks in digital pathology, including cell and nuclei detection, tissue classification, and biomarker quantification.
 
-![image](../../docs/images/qupath.jpg)
+<img src="../../docs/images/qupath.jpg" width=70% />
 
 ### Table of Contents
-- [Supported Applications]()
-- [Installing QuPath]()
-- [Install MONAI Label Extension From Binaries]()
-- [Building MONAI Label Extension from source ]()
-- [Using the Plugin]()
+- [Supported Applications](#supported-applications)
+- [Installing QuPath](#installing-qupath)
+- [Install MONAI Label Extension From Binaries](#install-monai-label-extension-from-binaries)
+- [Building MONAI Label Extension from source ](#building-monai-label-extension-from-source)
+- [Using the Plugin](#using-the-plugin)
 
 ### Supported Applications
 Users can find supported applications in the [sample-apps](../../sample-apps/radiology/) folder under the radiology section. They'll find models like DeepEdit, DeepGrow, Segmentation, and more. These applications can be used to create and refine labels for various medical imaging tasks.

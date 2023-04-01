@@ -1,15 +1,27 @@
 # MONAI Bundle Sample Applications
 
-MONAI Label enables researchers to create labeling applications in a serverless way, allowing for easy deployment through the MONAI Label server. The platform currently offers four template applications that can be used as is or modified to meet specific needs. These templates can be downloaded using the MONAI Label CLI with the following command:
+MONAI Label makes it easy to create labeling applications in a serverless way, enabling easy deployment through the MONAI Label server.
+
+### Table of Contents
+- [Using MONAI Label CLI to Pull Apps](#using-monai-label-cli-to-pull-apps)
+- [Available Template Applications](#available-template-applications)
+  - [Radiology](#radiology)
+  - [Pathology](#pathology)
+  - [Endoscopy](#endoscopy)
+  - [MONAI Bundle](#monai-bundle)
+- [Creating a Custom App](#creating-a-custom-app)
+
+### Using MONAI Label CLI to Pull Apps
+Currently, MONAI Label offers four template applications that can be used as-is or modified to meet specific needs. To download these templates using the MONAI Label CLI, use the following command:
 
 ```
 monailabel apps --download --name <sample app name> --output <output folder>
 ```
 
-The available template applications are:
+### Available Template Applications
 
-## [Radiology](./radiology)
-This template includes example models for interactive and automated segmentation of radiology (3D) images. It provides examples for the following three types of models:
+#### [Radiology](./radiology)
+The radiology template includes example models for interactive and automated segmentation of radiology (3D) images. It provides examples for the following three types of models:the following three types of models:
 - DeepEdit (Interactive + Auto Segmentation)
   - Spleen, Liver, Kidney, and others.
 - Deepgrow (Interactive)
@@ -17,8 +29,8 @@ This template includes example models for interactive and automated segmentation
 - Segmentation (Auto Segmentation)
   - Spleen, Liver, Kidney, and others.
 
-## [Pathology](./pathology)
-This template includes example models for interactive and automated segmentation of pathology (WSI) images. It provides examples for the following two types of models:
+#### [Pathology](./pathology)
+The pathology template includes example models for interactive and automated segmentation of pathology (WSI) images. It provides examples for the following two types of models:
 - DeepEdit (Interactive + Auto Segmentation)
   - Nuclei Segmentation
 - Segmentation (Auto Segmentation)
@@ -29,8 +41,8 @@ This template includes example models for interactive and automated segmentation
     - Dead Cells
     - Epithelial
 
-## [Endoscopy](./endoscopy)
-This template includes example models for interactive and automated tool tracking segmentation and a classification model for InBody vs. OutBody images in endoscopy-related images. It provides examples for the following three types of models:
+#### [Endoscopy](./endoscopy)
+The endoscopy template includes example models for interactive and automated tool tracking segmentation and a classification model for InBody vs. OutBody images in endoscopy-related images. It provides examples for the following three types of models:
 - DeepEdit (Interactive + Auto Segmentation)
   - Tool Tracking
 - Segmentation (Auto Segmentation)
@@ -39,10 +51,10 @@ This template includes example models for interactive and automated tool trackin
   - InBody vs. OutBody
 
 
-## [MONAI Bundle](./monaibundle)
+#### [MONAI Bundle](./monaibundle)
 The MONAI Bundle format provides a portable description of deep learning models. This template includes example models for interactive and automated segmentation using MONAI bundles defined in the MONAI Model Zoo. It can pull any bundle defined in the MONAI Model Zoo that is compatible and meets the requirements specified on the [MONAI Bundle Apps page](./monaibundle/).
 
-## Custom Apps
+### Creating a Custom App
 Researchers may want to define and add their own models. Follow the steps below to add a new segmentation model:
 
 1. Create a new TaskConfig file for the model in the `lib/configs` directory.

@@ -15,14 +15,14 @@ limitations under the License.
 
 3D Slicer is a free, open-source software for visualization, processing, segmentation, registration, and other 3D images and meshes. MONAI Label supports 3D Slicer with radiology and monaibundle applications. With its advanced features, 3D Slicer is a mature and well-tested viewer for radiology studies and algorithms.
 
-<img src="https://raw.githubusercontent.com/Project-MONAI/MONAILabel/main/plugins/slicer/MONAILabel/Screenshots/1.png" width="800"/>
+<img src="./MONAILabel/Screenshots/1.png" width="70%"/>
 
 ### Table of Contents
-- [Supported Applications]()
-- [Installing 3D Slicer]()
-- [Installing MONAI Label Plugin]()
-- [Plugin in Developer Mode]()
-- [Plugin Settings]()
+- [Supported Applications](#supported-applications)
+- [Installing 3D Slicer](#installing-3d-slicer)
+- [Installing MONAI Label Plugin](#installing-monai-label-plugin)
+- [Plugin in Developer Mode](#plugin-in-developer-mode)
+- [Plugin Settings](#plugin-settings)
 
 ### Supported Applications
 Users can find supported applications in the [sample-apps](../../sample-apps/radiology/) folder under the radiology section. They'll find models like DeepEdit, DeepGrow, Segmentation, and more. These applications can be used to create and refine labels for various medical imaging tasks.

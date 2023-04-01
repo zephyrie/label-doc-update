@@ -1,5 +1,4 @@
 # MONAI Label Supported Viewers
-
 MONAI Label supports various viewers for different domains, including radiology, pathology, and video. These viewers are essential for analyzing, visualizing, and understanding medical image data, as well as for the development and integration of algorithms.
 
 ## Radiology
